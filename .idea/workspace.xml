@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="297b7b81-a982-4039-9562-d2fd88c70aa2" name="Changes" comment="Add movie templates and URL routing">
-      <change afterPath="$PROJECT_DIR$/.idea/movie-recommendation-system.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/movies/static/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/movies/templates/add_watched_movie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies/templates/delete_watch_later_movie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies/templates/delete_watched_movie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies/templates/move_to_watched.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies/templates/update_watched_movie.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies/templates/watch_later_movies.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movies/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movies/templates/add_movie.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/add_watch_later_movie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/movies/static/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies/templates/watched_movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/watched_movies.html" afterDir="false" />
@@ -35,6 +36,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "WetSilhouette"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/WetSilhouette/movie-recommendation-system.git",
+    "accountId": "2fe12d9a-8f18-49c4-a5bd-443418afa57a"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -54,7 +67,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "dev.sweep.assistant.data.RecentlyUsedFiles": "movies/views.py;movies/templates/add_watched_movie.html;movies/templates/add_watch_later_movie.html;movies/urls.py;movies/templates/base.html;movies/models.py;movies/templates/watched_movies.html;movies/templates/index.html;movies/static/styles.css;mysite/urls.py",
+    "dev.sweep.assistant.data.RecentlyUsedFiles": "movies/static/styles.css;movies/templates/index.html;movies/templates/base.html;movies/urls.py;movies/templates/move_to_watched.html;movies/templates/delete_watch_later_movie.html;movies/templates/watch_later_movies.html;movies/templates/delete_watched_movie.html;movies/templates/update_watched_movie.html;movies/templates/watched_movies.html",
     "django.template.preview.state": "SHOW_EDITOR",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/silhouette/Documents/PyCharm Projects/movie-recommendation-system",
@@ -107,6 +120,9 @@
       </set>
     </attachedChunks>
   </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="297b7b81-a982-4039-9562-d2fd88c70aa2" name="Changes" comment="" />
@@ -116,11 +132,41 @@
       <updated>1773935095677</updated>
       <workItem from="1773935096726" duration="370000" />
       <workItem from="1774272195779" duration="6400000" />
-      <workItem from="1774342453749" duration="7413000" />
+      <workItem from="1774342453749" duration="9550000" />
     </task>
+    <task id="LOCAL-00001" summary="Add movie templates and URL routing">
+      <option name="closed" value="true" />
+      <created>1774349988174</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1774349988174</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add movie templates and URL routing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add movie templates and URL routing" />
   </component>
 </project>

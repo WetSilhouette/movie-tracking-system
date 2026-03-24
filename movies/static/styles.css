@@ -23,3 +23,36 @@ nav .navbar-brand.active {
     color: #007bff;
     font-weight: bold;
 }
+
+/* Homepage styles */
+.jumbotron {
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
+}
+
+.hover-shadow {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.text-decoration-none {
+    text-decoration: none;
+    color: inherit;
+}
+
+.text-decoration-none:hover {
+    color: inherit;
+}

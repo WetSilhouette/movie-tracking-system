@@ -1,13 +1,167 @@
 {% extends "base.html" %}
 {% block content %}
 {% with active_page='home' %}
-    <h1>Watched Movies</h1>
-    <ul>
-        {% for movie in movies %}
-            <li>{{ movie.title }}</li>
-        {% empty %}
-            <li>No movies yet.</li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <!-- Hero Section -->
+        <div class="jumbotron text-center bg-light shadow-sm">
+            <h1 class="display-4">🎬 Welcome to Your Movie Watchlist</h1>
+            <p class="lead">Track movies you want to watch and movies you've already seen</p>
+            <hr class="my-4">
+            <p>Organize your movie collection, rate what you've watched, and never forget what to watch next!</p>
+            <div class="mt-4">
+                <a class="btn btn-primary btn-lg mx-2" href="{% url 'add_watch_later_movie' %}" role="button">➕ Add Movie to Watch Later</a>
+                <a class="btn btn-success btn-lg mx-2" href="{% url 'add_watched_movie' %}" role="button">✅ Add Watched Movie</a>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mt-5 mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">📋 Watch Later</h5>
+                        <h2 class="display-3 text-primary">{{ watch_later_count }}</h2>
+                        <p class="card-text">Movies to watch</p>
+                        <a href="{% url 'find_watch_later_movies' %}" class="btn btn-outline-primary">View List</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">✅ Watched</h5>
+                        <h2 class="display-3 text-success">{{ watched_count }}</h2>
+                        <p class="card-text">Movies watched</p>
+                        <a href="{% url 'find_watched_movies' %}" class="btn btn-outline-success">View List</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">🎥 Total Collection</h5>
+                        <h2 class="display-3 text-info">{{ total_movies }}</h2>
+                        <p class="card-text">Total movies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <div class="row mt-5">
+            <!-- Recent Watch Later Movies -->
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">📋 Recently Added to Watch Later</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if recent_watch_later %}
+                            <ul class="list-group list-group-flush">
+                                {% for movie in recent_watch_later %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>{{ movie.title }}</strong>
+                                            <br>
+                                            <small class="text-muted">{{ movie.release_year }} • {{ movie.director }}</small>
+                                        </div>
+                                        <span class="badge bg-warning text-dark">{{ movie.general_rating }}/10</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="text-center mt-3">
+                                <a href="{% url 'find_watch_later_movies' %}" class="btn btn-sm btn-primary">View All →</a>
+                            </div>
+                        {% else %}
+                            <p class="text-muted text-center my-4">No movies in watch later list yet.</p>
+                            <div class="text-center">
+                                <a href="{% url 'add_watch_later_movie' %}" class="btn btn-sm btn-primary">Add Your First Movie</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Watched Movies -->
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">✅ Recently Watched</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if recent_watched %}
+                            <ul class="list-group list-group-flush">
+                                {% for watched_movie in recent_watched %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>{{ watched_movie.movie.title }}</strong>
+                                            <br>
+                                            <small class="text-muted">Watched on {{ watched_movie.watched_date|date:"M d, Y" }}</small>
+                                        </div>
+                                        <span class="badge bg-primary">{{ watched_movie.my_rating }}/10</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="text-center mt-3">
+                                <a href="{% url 'find_watched_movies' %}" class="btn btn-sm btn-success">View All →</a>
+                            </div>
+                        {% else %}
+                            <p class="text-muted text-center my-4">No watched movies yet.</p>
+                            <div class="text-center">
+                                <a href="{% url 'add_watched_movie' %}" class="btn btn-sm btn-success">Add Your First Watched Movie</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-4 mb-5">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">⚡ Quick Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-3 mb-3">
+                                <a href="{% url 'add_watch_later_movie' %}" class="text-decoration-none">
+                                    <div class="p-3 border rounded hover-shadow">
+                                        <h3>➕</h3>
+                                        <p class="mb-0">Add to Watch Later</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <a href="{% url 'add_watched_movie' %}" class="text-decoration-none">
+                                    <div class="p-3 border rounded hover-shadow">
+                                        <h3>✅</h3>
+                                        <p class="mb-0">Add Watched Movie</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <a href="{% url 'find_watch_later_movies' %}" class="text-decoration-none">
+                                    <div class="p-3 border rounded hover-shadow">
+                                        <h3>📋</h3>
+                                        <p class="mb-0">Browse Watch Later</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <a href="{% url 'find_watched_movies' %}" class="text-decoration-none">
+                                    <div class="p-3 border rounded hover-shadow">
+                                        <h3>🎬</h3>
+                                        <p class="mb-0">Browse Watched</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endwith %}
 {% endblock %}

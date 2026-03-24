@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+{% with active_page='watch_later_movies' %}
+    <h1>Watch Later Movies</h1>
+    <div class="container mt-4">
+        {% if watch_later_movies %}
+            <div class="row">
+                {% for movie in watch_later_movies %}
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            {% if movie.tmdb_poster_path %}
+                                <img src="https://image.tmdb.org/t/p/w500{{ movie.tmdb_poster_path }}"
+                                     class="card-img-top"
+                                     alt="{{ movie.title }}"
+                                     style="height: 450px; object-fit: cover;">
+                            {% else %}
+                                <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center"
+                                     style="height: 450px;">
+                                    <span class="text-white">No Poster Available</span>
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ movie.title }}</h5>
+                                <p class="card-text text-muted mb-2">
+                                    <small>{{ movie.release_year }} • Directed by {{ movie.director }}</small>
+                                </p>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-warning text-dark">TMDB Rating</span>
+                                        <span class="fw-bold">{{ movie.general_rating }}/10</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-info text-dark">Total Ratings</span>
+                                        <span class="fw-bold">{{ movie.total_ratings|floatformat:0 }}</span>
+                                    </div>
+                                </div>
+
+                                <p class="card-text">
+                                    <small class="text-muted">{{ movie.description|truncatewords:20 }}</small>
+                                </p>
+
+                                {% if movie.keywords %}
+                                    <div class="mt-2">
+                                        <small class="text-muted">{{ movie.keywords }}</small>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-grid gap-2">
+                                    <a href="{% url 'move_to_watched' movie.id %}" class="btn btn-sm btn-success">
+                                        <i class="bi bi-check-circle"></i> Mark as Watched
+                                    </a>
+                                    <a href="{% url 'delete_watch_later_movie' movie.id %}" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i> Remove from List
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info text-center" role="alert">
+                <h4 class="alert-heading">No Movies in Watch Later List!</h4>
+                <p>Start adding movies you want to watch later.</p>
+                <hr>
+                <a href="{% url 'add_watch_later_movie' %}" class="btn btn-primary">Add Your First Movie</a>
+            </div>
+        {% endif %}
+    </div>
+{% endwith %}
+{% endblock %}

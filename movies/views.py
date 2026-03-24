@@ -1,7 +1,7 @@
 import os
 
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, WatchedMovie
 from dotenv import load_dotenv
 import os
@@ -9,7 +9,26 @@ import os
 load_dotenv()
 
 def index(request):
-    return render(request, "index.html")
+    # Get statistics for the dashboard
+    watch_later_count = Movie.objects.filter(watch_later=True).count()
+    watched_count = WatchedMovie.objects.count()
+    total_movies = Movie.objects.count()
+
+    # Get recent watched movies (last 5)
+    recent_watched = WatchedMovie.objects.all().order_by('-watched_date')[:5]
+
+    # Get recent watch later movies (last 5)
+    recent_watch_later = Movie.objects.filter(watch_later=True).order_by('-id')[:5]
+
+    context = {
+        'watch_later_count': watch_later_count,
+        'watched_count': watched_count,
+        'total_movies': total_movies,
+        'recent_watched': recent_watched,
+        'recent_watch_later': recent_watch_later,
+    }
+
+    return render(request, "index.html", context)
 
 def add_watch_later_movie(request):
     if request.method == "POST":
@@ -110,6 +129,83 @@ def add_watched_movie(request):
     return render(request, "add_watched_movie.html", {'error': True, 'error_message': 'Movie not found in TMDB'})
 
 def find_watched_movies(request):
-    watched_movies = Movie.objects.filter(watchedmovie__isnull=False)
+    watched_movies = WatchedMovie.objects.all()
     return render(request, "watched_movies.html", {'watched_movies': watched_movies})
+
+
+def update_watched_movie(request, watched_movie_id):
+    watched_movie = get_object_or_404(WatchedMovie, id=watched_movie_id)
+
+    if request.method == "POST":
+        watched_movie.my_rating = request.POST.get("my_rating")
+        watched_movie.watched_date = request.POST.get("watched_date")
+        watched_movie.save()
+        return redirect('find_watched_movies')
+
+    context = {
+        'watched_movie': watched_movie,
+        'movie': watched_movie.movie
+    }
+    return render(request, "update_watched_movie.html", context)
+
+def delete_watched_movie(request, watched_movie_id):
+    watched_movie = get_object_or_404(WatchedMovie, id=watched_movie_id)
+
+    if request.method == "POST":
+        movie = watched_movie.movie
+        watched_movie.delete()
+
+        # If no other WatchedMovie references this movie, optionally delete the movie too
+        # or mark it as watch_later again
+        if not WatchedMovie.objects.filter(movie=movie).exists():
+            # Option 1: Delete the movie entirely
+            # movie.delete()
+
+            # Option 2: Mark as watch later again
+            movie.watch_later = True
+            movie.save()
+
+        return redirect('find_watched_movies')
+
+    context = {
+        'watched_movie': watched_movie
+    }
+    return render(request, "delete_watched_movie.html", context)
+
+
+def find_watch_later_movies(request):
+    watch_later_movies = Movie.objects.filter(watch_later=True)
+    return render(request, "watch_later_movies.html", {'watch_later_movies': watch_later_movies})
+
+def delete_watch_later_movie(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+
+    if request.method == "POST":
+        movie.delete()
+        return redirect('find_watch_later_movies')
+
+    context = {
+        'movie': movie
+    }
+    return render(request, "delete_watch_later_movie.html", context)
+
+def move_to_watched(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+
+    if request.method == "POST":
+        watched_date = request.POST.get("watched_date")
+        my_rating = request.POST.get("my_rating")
+
+        movie.watch_later = False
+        movie.save()
+
+        if not WatchedMovie.objects.filter(movie=movie).exists():
+            WatchedMovie.objects.create(movie=movie, watched_date=watched_date, my_rating=my_rating)
+
+        return redirect('find_watched_movies')
+
+    context = {
+        'movie': movie
+    }
+    return render(request, "move_to_watched.html", context)
 
