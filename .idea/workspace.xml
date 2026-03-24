@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="297b7b81-a982-4039-9562-d2fd88c70aa2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/movies/templates/add_movie.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/movies/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/movies/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/movies/templates/watched_movies.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/movies/urls.py" afterDir="false" />
+    <list default="true" id="297b7b81-a982-4039-9562-d2fd88c70aa2" name="Changes" comment="Add movie templates and URL routing">
+      <change afterPath="$PROJECT_DIR$/.idea/movie-recommendation-system.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies/static/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies/templates/add_watched_movie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/templates/add_movie.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/add_watch_later_movie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/templates/watched_movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/watched_movies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -37,11 +47,15 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "dev.sweep.assistant.data.RecentlyUsedFiles": ".env;movies/views.py;movies/templates/add_movie.html;movies/urls.py",
+    "dev.sweep.assistant.data.RecentlyUsedFiles": "movies/views.py;movies/templates/add_watched_movie.html;movies/templates/add_watch_later_movie.html;movies/urls.py;movies/templates/base.html;movies/models.py;movies/templates/watched_movies.html;movies/templates/index.html;movies/static/styles.css;mysite/urls.py",
+    "django.template.preview.state": "SHOW_EDITOR",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/silhouette/Documents/PyCharm Projects/movie-recommendation-system",
     "nodejs_package_manager_path": "npm",
@@ -54,6 +68,36 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/movies/static" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="movie-recommendation-system" type="Python.DjangoServer" factoryName="Django server">
+      <module name="movie-recommendation-system" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -72,6 +116,7 @@
       <updated>1773935095677</updated>
       <workItem from="1773935096726" duration="370000" />
       <workItem from="1774272195779" duration="6400000" />
+      <workItem from="1774342453749" duration="7413000" />
     </task>
     <servers />
   </component>

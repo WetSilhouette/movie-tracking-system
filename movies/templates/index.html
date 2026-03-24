@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% with active_page='home' %}
     <h1>Watched Movies</h1>
     <ul>
         {% for movie in movies %}
@@ -8,4 +9,5 @@
             <li>No movies yet.</li>
         {% endfor %}
     </ul>
+{% endwith %}
 {% endblock %}

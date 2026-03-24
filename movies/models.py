@@ -10,6 +10,7 @@ class Movie(models.Model):
     keywords = models.CharField(max_length=255)
     tmdb_id = models.IntegerField()
     tmdb_poster_path = models.CharField(max_length=255)
+    watch_later = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -19,5 +20,9 @@ class WatchedMovie(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     my_rating = models.FloatField(null=True)
     watched_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.movie} - Watched on {self.watched_date} - My Rating: {self.my_rating}"
+
 
 

@@ -1,4 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+{% with active_page='watched_movies' %}
     <h1>Watched Movies</h1>
+    <div class="container">
+        <ul class="list-group">
+            {% for movie in watched_movies %}
+                <li class="list-group-item">{{ movie.title }}</li>
+            {% empty %}
+                <li class="list-group-item">No watched movies yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endwith %}
 {% endblock %}

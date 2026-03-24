@@ -1,28 +1,40 @@
+{%  load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Movie Watchlist</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center align-items-center ">
-    <a class="navbar-brand" href="{% url 'index' %}">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_movie' %}">Add Movie</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'find_watched_movies' %}">Watched Movies</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-{% block content %}{% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center align-items-center ">
+        <a class="navbar-brand {% if active_page == 'home' %}active{% endif %}" href="{% url 'index' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" id="nav-links">
+                <li class="nav-item">
+                    <a class="nav-link {% if active_page == 'add_watch_later' %}active{% endif %}" href="{% url 'add_watch_later_movie' %}">Add Watch Later Movie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if active_page == 'add_watched_movie' %}active{% endif %}" href="{% url 'add_watched_movie' %}">Add Watched Movie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if active_page == 'watch_later_movies' %}active{% endif %}" href="{% url 'find_watch_later_movies_title' %}">Watch Later Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if active_page == 'watched_movies' %}active{% endif %}" href="{% url 'find_watched_movies' %}">Watched Movies</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
 </body>
 </html>
