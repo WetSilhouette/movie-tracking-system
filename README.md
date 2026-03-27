@@ -1,4 +1,4 @@
-# Movie Recommendation System
+# Movie Tracking System
 
 A Django-based web application for managing your movie watchlist and tracking watched movies. This system integrates with The Movie Database (TMDB) API to fetch movie information and provides an intuitive interface for organizing your movie collection.
 
